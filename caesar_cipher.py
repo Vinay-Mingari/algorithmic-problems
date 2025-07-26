@@ -1,26 +1,16 @@
 
-def encode(message: str, shift: int) -> str:
-    """Encodes a string by shifting each letter forward."""
-    result = ""
-    for char in message:
+def caesar_cipher(text, shift, decode=False):
+    result = []
+    for char in text:
         if char.isalpha():
             base = ord('A') if char.isupper() else ord('a')
-            shifted = (ord(char) - base + shift) % 26
-            result += chr(base + shifted)
+            offset = -shift if decode else shift
+            shifted = (ord(char) - base + offset + 26) % 26 + base
+            result.append(chr(shifted))
         else:
-            result += char  # Non-letter characters stay the same
-    return result
+            result.append(char)
+    return ''.join(result)
 
-def decode(message: str, shift: int) -> str:
-    """Decodes a string by reversing the Caesar Cipher shift."""
-    return encode(message, -shift)
 
-# 🧪 Simple testing
-if __name__ == "__main__":
-    original = "Hello, Vinay!"
-    encoded = encode(original, 3)
-    decoded = decode(encoded, 3)
+print(caesar_cipher("Hello, World!", 3,decode = "True"))
 
-    print("Original:", original)
-    print("Encoded :", encoded)
-    print("Decoded :", decoded)
