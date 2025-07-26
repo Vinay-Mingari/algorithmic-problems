@@ -9,7 +9,7 @@ def find_duplicates(nums):
             seen.add(num)
 
     return sorted(list(duplicates))
-
+    
 print(find_duplicates([1, 2, 3, 2, 4, 5, 1]))     
 print(find_duplicates([10, 20, 30]))              
 print(find_duplicates([5, 5, 5, 5, 5]))           
